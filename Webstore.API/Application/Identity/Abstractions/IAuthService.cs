@@ -1,4 +1,5 @@
 ﻿using Webstore.API.Application.Identity.DTOs;
+using Webstore.API.Application.Identity.Models;
 
 namespace Webstore.API.Application.Identity.Abstractions;
 

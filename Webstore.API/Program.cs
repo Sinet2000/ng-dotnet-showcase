@@ -1,19 +1,18 @@
 using System.Text.Json;
 using System.Text.Json.Serialization;
 using Microsoft.EntityFrameworkCore;
-using Scalar.AspNetCore;
+using Webstore.API.Extensions;
+using Webstore.API.Handlers;
+using Webstore.API.Infrastructure;
 using Webstore.API.Infrastructure.Options;
 using Webstore.API.Infrastructure.Persistence;
+using Webstore.API.ServiceDefaults;
 
 var builder = WebApplication.CreateBuilder(args);
 
 builder.ConfigureOptions();
-builder.AddApplicationServices();
-builder.AddInfrastructureServices();
+builder.AddInfrastructure();
 builder.AddServiceDefaults();
-
-// Add services to the container.
-builder.AddNpgsqlDbContext<AppDbContext>(connectionName: "webstore-api");
 
 builder.Services.AddControllers();
 // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
@@ -61,7 +60,7 @@ builder.Services.AddCors(options =>
     });
 });
 
-builder.AddDefaultOpenApi();
+builder.AddOpenApiDocument();
 
 var app = builder.Build();
 
@@ -81,19 +80,6 @@ using (var scope = app.Services.CreateScope())
 
 app.MapDefaultEndpoints();
 app.UseStatusCodePages();
-
-// Configure the HTTP request pipeline.
-if (app.Environment.IsDevelopment())
-{
-    app.MapOpenApi();
-    app.MapScalarApiReference("/api-docs", opt =>
-    {
-        opt.WithTitle("Webstore API")
-        .WithTheme(ScalarTheme.Mars)
-        .PreserveSchemaPropertyOrder()
-        .HideSearch();
-    });
-}
 
 app.UseCors(corsOptions.PolicyName);
 app.UseHttpsRedirection();
