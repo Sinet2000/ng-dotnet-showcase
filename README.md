@@ -1,3 +1,30 @@
+# Client App
+- Angular
+- pnpm
+- scss
+
+## Initialisation (create command, ignore that)
+```bash
+pnpm dlx @angular/cli@latest new client-app --package-manager=pnpm --routing --style=scss --standalone
+```
+
+## Why PNPM instead of npm?
+
+### 1️⃣ It saves a LOT of disk space
+npm & yarn copy deps into every project
+pnpm stores each pckg globally and links it into the project. Creates symlinks.
+Result: smaller proejcts, faster isntalls, less dups
+
+### 2️⃣ Much faster installs
+- It reuses cached pckgs
+- Doesn't copy files repeatedly
+- Hard links are CHEAP! (noticeably faster for large repos)
+
+### 3️⃣ Strict dependency resolution (this is big)
+npm / yarn allows "phantom deps", means, If pckg A depends on lodash, it can accidentally import lodash and other crap even if proj didn't declare it
+So, more predictable builds = fewer PROD bugs
+And so on ...
+
 # API
 
 ## Table Of Contents

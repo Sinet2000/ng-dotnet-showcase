@@ -1,9 +1,9 @@
 <Solution>
   <Folder Name="/aspire/">
-    <Project Path="Webstore.API.AppHost/Webstore.API.AppHost.csproj" />
-    <Project Path="Webstore.API.ServiceDefaults/Webstore.API.ServiceDefaults.csproj" />
+    <Project Path="aspire/Webstore.API.AppHost/Webstore.API.AppHost.csproj" />
+    <Project Path="aspire/Webstore.API.ServiceDefaults/Webstore.API.ServiceDefaults.csproj" />
   </Folder>
-  <Folder Name="/src/">
-    <Project Path="Webstore.API/Webstore.API.csproj" />
+  <Folder Name="/server/">
+    <Project Path="server/Webstore.API/Webstore.API.csproj" />
   </Folder>
 </Solution>
